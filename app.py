@@ -8,19 +8,19 @@ app = Flask(__name__)
 
 @app.route('/htop')
 def htop():
-    # Fetching system username
+
     username = os.getenv('USER') or os.getlogin()
 
-    # Fetching current IST time
+ 
     ist_time = datetime.now(timezone('Asia/Kolkata')).strftime('%Y-%m-%d %H:%M:%S %Z')
 
-    # Fetching top command output
+  
     try:
         top_output = subprocess.check_output(['top', '-b', '-n', '1']).decode('utf-8')
     except Exception as e:
         top_output = str(e)
 
-    # HTML response
+   
     response = f"""
     <html>
         <body>
